@@ -25,7 +25,7 @@ const PromotionalBanner1 = () => {
               MASKS, GLOVES, FACE SHIELDS &amp; MORE
             </h6>
             <Link
-              to="/shop"
+              to="/product/10012/0"
               className="btn btn-outline-white flex-align d-inline-flex rounded-pill gap-8 mt-28"
               tabIndex={0}
             >

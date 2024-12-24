@@ -15,8 +15,8 @@ const Header = () => {
   const [scroll, setScroll] = useState(false);
   const [categorys, setCategorys] = useState([]);
   const navigate = useNavigate();
-  const [searchFilter , setSearchFilter]=useState('')
-  const { cartItems ,filterClickHandler } = useContext(cartContext);
+  const [searchFilter, setSearchFilter] = useState("");
+  const { cartItems, filterClickHandler } = useContext(cartContext);
 
   useEffect(() => {
     getAllCategory();
@@ -133,10 +133,14 @@ const Header = () => {
               className="form-control py-16 px-24 text-xl rounded-pill pe-64"
               placeholder="Search for a product or brand"
               value={searchFilter}
-              onChange={(e)=>{setSearchFilter(e.target.value)}}
+              onChange={(e) => {
+                setSearchFilter(e.target.value);
+              }}
             />
             <button
-             onClick={()=>{filterClickHandler(searchFilter)}}
+              onClick={() => {
+                filterClickHandler(searchFilter);
+              }}
               type="button"
               className="w-48 h-48 bg-main-600 rounded-circle flex-center text-xl text-white position-absolute top-50 translate-middle-y inset-inline-end-0 me-8"
             >
@@ -224,7 +228,7 @@ const Header = () => {
                   <select
                     className="js-example-basic-single border border-gray-200 border-end-0 rounded-0 border-0"
                     name="state"
-                    onChange={(e)=>{
+                    onChange={(e) => {
                       console.log(e.target.value);
                     }}
                   >
@@ -244,11 +248,15 @@ const Header = () => {
                       className="search-form__input common-input py-13 ps-16 pe-18 rounded-0 border-0"
                       placeholder="Search for a product or brand"
                       value={searchFilter}
-                      onChange={(e)=>{setSearchFilter(e.target.value)}}
+                      onChange={(e) => {
+                        setSearchFilter(e.target.value);
+                      }}
                     />
                   </div>
                   <button
-                  onClick={()=>{filterClickHandler(searchFilter)}}
+                    onClick={() => {
+                      filterClickHandler(searchFilter);
+                    }}
                     type="button"
                     className="bg-main-two-600 flex-center text-xl text-white flex-shrink-0 w-48 hover-bg-main-two-700 d-lg-flex d-none"
                   >
@@ -262,8 +270,9 @@ const Header = () => {
             <div className="header-right flex-align d-lg-block d-none">
               <div className="header-two-activities flex-align flex-wrap gap-32">
                 <Link
-                  to="/Login"
+                  to="http://targetdemo.asktek.net/toms.tompg.indent.webapp/"
                   className="flex-align flex-column gap-8 item-hover-two"
+                  target="_blank"
                 >
                   <span className="text-2xl text-white d-flex position-relative item-hover__text">
                     <IoLogInOutline />

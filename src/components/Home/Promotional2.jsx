@@ -4,7 +4,6 @@ import noimg from "../../assets/banner/pkg.png";
 import pkg2 from "../../assets/banner/pkg2.png";
 import pkg3 from "../../assets/banner/pkg3.png";
 
-
 const Promotional2 = () => {
   return (
     <section className="promotional-banner mt-32">
@@ -27,7 +26,7 @@ const Promotional2 = () => {
                   tapes, and cushioning materials.
                 </p>
                 <Link
-                  to="/category/packing-materials"
+                  to="/product/10013/0"
                   className="d-inline-flex align-items-center gap-8 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600"
                 >
                   Explore Now
@@ -63,7 +62,7 @@ const Promotional2 = () => {
                   reliable printing solutions.
                 </p>
                 <Link
-                  to="/category/barcode-supplies"
+                  to="/product/10014/"
                   className="d-inline-flex align-items-center gap-8 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600"
                 >
                   Explore Now
@@ -99,7 +98,7 @@ const Promotional2 = () => {
                   warehouse essentials.
                 </p>
                 <Link
-                  to="/category/material-handling"
+                  to="/product/10016/0"
                   className="d-inline-flex align-items-center gap-8 text-heading text-md fw-medium border border-top-0 border-end-0 border-start-0 border-gray-900 hover-text-main-two-600 hover-border-main-two-600"
                 >
                   Explore Now

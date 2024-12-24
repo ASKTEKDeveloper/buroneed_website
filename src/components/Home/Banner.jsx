@@ -68,7 +68,7 @@ const Banner = () => {
                     className="has-submenus-submenu"
                   >
                     <Link
-                      to="#"
+                      // to={`/product/${mainCat.MainCategory_Id}/0`}
                       className="text-gray-500 text-15 py-12 px-16 flex-align gap-8 rounded-0"
                     >
                       <span>{mainCat.MainCategory_Description}</span>
@@ -83,7 +83,9 @@ const Banner = () => {
                       <ul className="submenus-submenu__list max-h-300 overflow-y-auto scroll-sm">
                         {mainCat.subCategories?.map((subcat) => (
                           <li key={subcat.Category_Id}>
-                            <Link to="/shop">
+                            <Link
+                              to={`/product/${mainCat.MainCategory_Id}/${subcat.Category_Id}`}
+                            >
                               {subcat.Category_Description}
                             </Link>
                           </li>
@@ -117,7 +119,7 @@ const Banner = () => {
                       productivity and well-being in your workplace.
                     </p>
                     <Link
-                      to="/shop"
+                      to="/product/10009/0"
                       className="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48"
                     >
                       Shop Now
@@ -143,7 +145,7 @@ const Banner = () => {
                       impact.
                     </p>
                     <Link
-                      to="/shop"
+                      to="/product/10011/0"
                       className="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48"
                     >
                       Explore More
@@ -169,7 +171,7 @@ const Banner = () => {
                       of your employees.
                     </p>
                     <Link
-                      to="/shop"
+                      to="/product/10012/0"
                       className="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48"
                     >
                       Explore

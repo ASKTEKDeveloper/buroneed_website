@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import cartContext from "../Context/cartContext";
 
 const QuantityControl = ({ initialQuantity = 1, product }) => {
@@ -6,6 +8,16 @@ const QuantityControl = ({ initialQuantity = 1, product }) => {
   const [quantity, setQuantity] = useState(
     cartItems[product?.Product_Details_Id]?.productQuantity || initialQuantity
   );
+
+  const handleAddOrUpdateCart = () => {
+    addToCart(product, quantity);
+    const action = Object.keys(cartItems).includes(product?.Product_Details_Id)
+      ? "updated"
+      : "added to";
+    toast.success(`Product successfully ${action} the cart!`, {
+      position: "top-right", // Use string instead of constant
+    });
+  };
 
   const incrementQuantity = () => setQuantity(Number(quantity) + 1);
   const decrementQuantity = () =>
@@ -27,7 +39,7 @@ const QuantityControl = ({ initialQuantity = 1, product }) => {
           value={quantity}
           min={1}
           onChange={(e) => {
-            if (/[0-9]/.test(e.target.value))
+            if (/^[0-9]*$/.test(e.target.value))
               setQuantity(Number(e.target.value) === 0 ? 1 : e.target.value);
           }}
         />
@@ -40,11 +52,9 @@ const QuantityControl = ({ initialQuantity = 1, product }) => {
         </button>
       </div>
       <button
-        className=" btn-outline-main product-card__cart btn  w-100 mt-14 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium w-100"
+        className="btn-outline-main product-card__cart btn w-100 mt-14 text-heading hover-bg-main-600 hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium w-100"
         tabIndex={0}
-        onClick={() => {
-          addToCart(product, quantity);
-        }}
+        onClick={handleAddOrUpdateCart}
         style={{ whiteSpace: "nowrap" }}
       >
         {!Object.keys(cartItems).includes(product?.Product_Details_Id)

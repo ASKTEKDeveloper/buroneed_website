@@ -20,9 +20,7 @@ import VendorTwoDetailsPage from "./pages/VendorTwoDetailsPage";
 import BecomeSellerPage from "./pages/BecomeSellerPage";
 import WishlistPage from "./pages/WishlistPage";
 import Home from "./components/Home/Home";
-import {
-  CartContextProvider,
-} from "./components/Context/cartContext";
+import { CartContextProvider } from "./components/Context/cartContext";
 import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import ContactUs from "./components/Contact/ContactUs";
@@ -42,7 +40,10 @@ function App() {
             <Route path="cart" element={<Cart />} />
             <Route path="contact" element={<ContactUs />} />
             <Route path="about" element={<About />} />
-            <Route path="product/:mainCategoryId/:subCategoryId" element={<Product />} />
+            <Route
+              path="product/:mainCategoryId/:subCategoryId"
+              element={<Product />}
+            />
           </Route>
 
           {"old routes"}
