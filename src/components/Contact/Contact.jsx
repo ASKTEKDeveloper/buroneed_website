@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "../../axios";
-import { Button, Dialog, Stack, Typography } from "@mui/material";
-import Loader from "../../Loaders/Loader";
+import {
+  Button,
+  Dialog,
+  LinearProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 
 const Contact = () => {
@@ -340,26 +344,8 @@ const Contact = () => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth
-        PaperProps={{
-          sx: {
-            backgroundColor: "transparent",
-            boxShadow: "none",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-        }}
       >
-        <Stack
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            backgroundColor: "#ffffff00",
-          }}
-        >
-          <Loader />
-        </Stack>
+        <LinearProgress />
       </Dialog>
       {/* Success Message Dialog */}
       <Dialog

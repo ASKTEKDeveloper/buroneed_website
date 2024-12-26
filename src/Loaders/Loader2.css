@@ -1,9 +1,14 @@
-/* From Uiverse.io by nazeer004 */
-.loader {
+.loader_buroneed {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%; /* Ensure the loader takes full space */
+  z-index: 9999; /* Make sure it's on top */
 }
 
-.loader span {
+.loader_buroneed span {
   position: absolute;
   color: #fff;
   transform: translate(-50%, -50%);
@@ -11,12 +16,12 @@
   letter-spacing: 5px;
 }
 
-.loader span:nth-child(1) {
+.loader_buroneed span:nth-child(1) {
   color: transparent;
   -webkit-text-stroke: 0.3px rgb(0, 57, 244);
 }
 
-.loader span:nth-child(2) {
+.loader_buroneed span:nth-child(2) {
   color: rgb(0, 4, 255);
   -webkit-text-stroke: 1px rgb(17, 0, 255);
   animation: uiverse723 3s ease-in-out infinite;

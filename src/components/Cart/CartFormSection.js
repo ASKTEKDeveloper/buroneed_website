@@ -1,10 +1,16 @@
 import React, { useContext, useState } from "react";
 import axios from "../../axios";
-import Loader from "../../Loaders/Loader";
+// import Loader from "../../Loaders/Loader";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cartContext from "../Context/cartContext";
-import { Button, Dialog, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  LinearProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 const CartFormSection = () => {
   const [data, setData] = useState({
@@ -169,26 +175,27 @@ const CartFormSection = () => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           fullWidth
-          PaperProps={{
-            sx: {
-              backgroundColor: "transparent",
-              boxShadow: "none",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            },
-          }}
+          // PaperProps={{
+          //   sx: {
+          //     backgroundColor: "transparent",
+          //     boxShadow: "none",
+          //     display: "flex",
+          //     justifyContent: "center",
+          //     alignItems: "center",
+          //   },
+          // }}
         >
-          <Stack
-            sx={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              backgroundColor: "#ffffff00",
-            }}
-          >
-            <Loader />
-          </Stack>
+          <LinearProgress />
+          {/* <Stack
+                 sx={{
+                   justifyContent: "center",
+                   alignItems: "center",
+                   width: "100%",
+                   backgroundColor: "#ffffff00",
+                 }}
+               >
+                 <Loader />
+               </Stack> */}
         </Dialog>
         <Dialog
           open={successMessage}
