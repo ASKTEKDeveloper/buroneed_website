@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import axios from "../../axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import cartContext from "../Context/cartContext";
 
 const CartFormSection = () => {
@@ -10,24 +12,29 @@ const CartFormSection = () => {
     phone: "",
     location: "",
   });
-  const [errors, setErrors] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    location: "",
-  });
-
-  const { cartItems , setCartItems } = useContext(cartContext);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { cartItems, setCartItems } = useContext(cartContext);
 
   const handleDataChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleClick = () => {
+  const setErrorMessage = (name, message) => {
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: message }));
+    setTimeout(() => {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+    }, 4000);
+  };
+
+  const handleFocus = (e) => {
+    setErrors({ ...errors, [e.target.name]: "" });
+  };
+
+  const validateInputs = () => {
     let hasErrors = false;
     for (const [key, value] of Object.entries(data)) {
-      if (value === "") {
+      if (value.trim() === "") {
         setErrorMessage(key, `${key} cannot be empty`);
         hasErrors = true;
         continue;
@@ -70,132 +77,83 @@ const CartFormSection = () => {
           break;
       }
     }
+    return !hasErrors;
+  };
 
-    if (!hasErrors) {
-      EmailOnEnquiry();
+  const handleClick = () => {
+    if (validateInputs()) {
+      handleEnquirySubmission();
     }
   };
 
-  const EmailOnEnquiry = async () => {
-    const products = Object.values(cartItems).map((item) => ({
-      name: item.Product_Details_Description,
-      quantity: item.productQuantity,
-    }));
-    const res = await axios.post("/EmailOnEnquiry", { ...data, products });
-    console.log(res);
-    setData({
-      name: "",
-      company: "",
-      email: "",
-      phone: "",
-      location: "",
-    });
-    localStorage.removeItem('cartItems')
-    setCartItems([])
+  const handleEnquirySubmission = async () => {
+    setLoading(true);
+    try {
+      const products = Object.values(cartItems).map((item) => ({
+        name: item.Product_Details_Description,
+        quantity: item.productQuantity,
+      }));
+      await axios.post("/EmailOnEnquiry", { ...data, products });
+      toast.success("Enquiry submitted successfully!", {
+        position: "top-right",
+      });
+      setData({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        location: "",
+      });
+      handleCartClearConfirmation();
+    } catch (error) {
+      toast.error("Failed to submit enquiry. Please try again.", {
+        position: "top-right",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const setErrorMessage = (name, message) => {
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: message }));
-    setTimeout(() => {
-      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
-    }, 4000);
+  const handleCartClearConfirmation = () => {
+    if (window.confirm("Do you want to clear the cart?")) {
+      localStorage.removeItem("cartItems");
+      setCartItems([]);
+    }
   };
 
-  const handleFocus = (e) => {
-    setErrors({ ...errors, [e.target.name]: "" });
-  };
   return (
     <div className="col-xl-3 col-lg-4">
       <div className="cart-sidebar border border-gray-100 rounded-8 px-24 py-40">
         <h6 className="text-xl mb-32">Submit Your Details</h6>
         <div className="row gap-18">
-          <div className="form-group">
-            <label htmlFor="name form-label">Name</label>
-            <input
-              className="form-control"
-              type="text"
-              name="name"
-              id="name"
-              value={data.name}
-              onChange={handleDataChange}
-              style={{ borderColor: errors.name ? "red" : "#dee2e6" }}
-              onFocus={handleFocus}
-            />
-            <p className="form-text text-danger position-absolute text-xs mt-0">
-              {errors.name}
-            </p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="company form-label">Company</label>
-            <input
-              className="form-control"
-              type="text"
-              name="company"
-              id="company"
-              value={data.company}
-              onChange={handleDataChange}
-              style={{ borderColor: errors.company ? "red" : "#dee2e6" }}
-              onFocus={handleFocus}
-            />
-            <p className="form-text text-danger position-absolute text-xs mt-0">
-              {errors.company}
-            </p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email form-label">Email</label>
-            <input
-              className="form-control"
-              type="text"
-              name="email"
-              id="email"
-              value={data.email}
-              onChange={handleDataChange}
-              style={{ borderColor: errors.email ? "red" : "#dee2e6" }}
-              onFocus={handleFocus}
-            />
-            <p className="form-text text-danger position-absolute text-xs mt-0">
-              {errors.email}
-            </p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone form-label">Phone No</label>
-            <input
-              className="form-control"
-              type="text"
-              name="phone"
-              id="phone"
-              value={data.phone}
-              onChange={handleDataChange}
-              style={{ borderColor: errors.phone ? "red" : "#dee2e6" }}
-              onFocus={handleFocus}
-            />
-            <p className="form-text text-danger position-absolute text-xs mt-0">
-              {errors.phone}
-            </p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="location form-label">Location</label>
-            <input
-              className="form-control"
-              type="text"
-              name="location"
-              id="location"
-              value={data.location}
-              onChange={handleDataChange}
-              style={{ borderColor: errors.location ? "red" : "#dee2e6" }}
-              onFocus={handleFocus}
-            />
-            <p className="form-text text-danger position-absolute text-xs mt-0">
-              {errors.location}
-            </p>
-          </div>
+          {["name", "company", "email", "phone", "location"].map((field) => (
+            <div className="form-group" key={field}>
+              <label htmlFor={field} className="form-label">
+                {field.charAt(0).toUpperCase() + field.slice(1)}
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                name={field}
+                id={field}
+                value={data[field]}
+                onChange={handleDataChange}
+                style={{ borderColor: errors[field] ? "red" : "#dee2e6" }}
+                onFocus={handleFocus}
+              />
+              <p className="form-text text-danger position-absolute text-xs mt-0">
+                {errors[field]}
+              </p>
+            </div>
+          ))}
         </div>
 
         <button
           onClick={handleClick}
           className="btn btn-main mt-40 py-18 w-100 rounded-8"
+          disabled={loading}
         >
-          Proceed to checkout
+          {loading ? "Submitting..." : "Submit Enquiry"}
         </button>
       </div>
     </div>

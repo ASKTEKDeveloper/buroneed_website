@@ -96,10 +96,10 @@ const FeaturedOneHome = ({ title, categoryid }) => {
             <div className="border border-gray-100 p-24 rounded-16">
               <div className="section-heading mb-24">
                 <div className="flex-between flex-wrap gap-8">
-                  <h5 className="mb-0">Featured Products </h5>
+                  <h5 className="mb-0">Office Furnitures </h5>
                   <div className="flex-align mr-point gap-16">
                     <Link
-                      to="/shop"
+                      to="/product/10015/20018"
                       className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
                     >
                       View All Deals
@@ -168,7 +168,7 @@ const FeaturedOneHome = ({ title, categoryid }) => {
                             <div className="product-card__content my-20 flex-grow-1">
                               <h6 className="title text-lg fw-semibold mb-12">
                                 <Link
-                                  to="/product-details-two"
+                                  // to="/product/10015/20018"
                                   className="link text-line-2"
                                   tabIndex={0}
                                 >
@@ -202,7 +202,7 @@ const FeaturedOneHome = ({ title, categoryid }) => {
                 </span>
 
                 <Link
-                  to="/shop"
+                  to="/product/10015/20018"
                   className="mt-16 mb-24 btn btn-main-two fw-medium d-inline-flex align-items-center rounded-pill gap-8"
                   tabIndex={0}
                 >

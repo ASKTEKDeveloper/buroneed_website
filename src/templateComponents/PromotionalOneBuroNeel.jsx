@@ -18,7 +18,7 @@ const PromotionalOneBuroNeel = () => {
                   Office Stationery Items
                 </h6>
                 <Link
-                  to="/office-stationary"
+                  to="/product/1/2"
                   className="btn btn-main d-inline-flex align-items-center rounded-pill gap-8 mt-24"
                 >
                   Explore
@@ -41,7 +41,7 @@ const PromotionalOneBuroNeel = () => {
                   Cleaning Products Range
                 </h6>
                 <Link
-                  to="/cleaning-solutions"
+                  to="/product/10009/20010"
                   className="btn btn-main d-inline-flex align-items-center rounded-pill gap-8 mt-24"
                 >
                   Explore
@@ -64,7 +64,7 @@ const PromotionalOneBuroNeel = () => {
                   Kitchen Pantry Supplies
                 </h6>
                 <Link
-                  to="/kitchen-party-consumables"
+                  to="/product/2/10003"
                   className="btn btn-main d-inline-flex align-items-center rounded-pill gap-8 mt-24"
                 >
                   Explore
@@ -87,7 +87,7 @@ const PromotionalOneBuroNeel = () => {
                   Corporate Gifting Solutions
                 </h6>
                 <Link
-                  to="/corporate-gifting"
+                  to="/product/10011/20013"
                   className="btn btn-main d-inline-flex align-items-center rounded-pill gap-8 mt-24"
                 >
                   Explore
