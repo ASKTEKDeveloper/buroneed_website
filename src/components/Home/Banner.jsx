@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Image1 from "../../assets/banner/banner-img1.png";
-import Image2 from "../../assets/banner/banner-img2.png";
 import Image3 from "../../assets/banner/banner-img3.png";
 import Image4 from "../../assets/banner/banner-img4.png";
 import axios from "../../axios";

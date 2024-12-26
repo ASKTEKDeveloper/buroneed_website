@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { imageURL } from "../../axios";
 import cartContext from "../Context/cartContext";
 import QuantityControl from "./QuantityControl";

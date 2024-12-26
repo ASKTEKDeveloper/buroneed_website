@@ -1,5 +1,4 @@
 import React from "react";
-import PromotionalTwo from "./Promotional";
 import Banner from "./Banner";
 import ProductSlider from "./ProductSlider";
 import PromotionalOneBuroNeel from "../../templateComponents/PromotionalOneBuroNeel";
