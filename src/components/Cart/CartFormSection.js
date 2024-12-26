@@ -116,9 +116,6 @@ const CartFormSection = () => {
         phone: "",
         location: "",
       });
-      localStorage.removeItem("cartItems");
-      setCartItems([]);
-      handleCartClearConfirmation();
     } catch (error) {
       toast.error("Failed to submit enquiry. Please try again.", {
         position: "top-right",
@@ -126,13 +123,6 @@ const CartFormSection = () => {
     } finally {
       setLoading(false);
       hideLoading();
-    }
-  };
-
-  const handleCartClearConfirmation = () => {
-    if (window.confirm("Do you want to clear the cart?")) {
-      localStorage.removeItem("cartItems");
-      setCartItems([]);
     }
   };
 

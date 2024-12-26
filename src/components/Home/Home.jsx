@@ -7,12 +7,12 @@ import PromotionalBanner1 from "./PromotionalBanner1";
 import Promotional2 from "./Promotional2";
 import Collabs from "./Collabs";
 import Brands from "./Brands";
-import Preloader from "../../helper/Preloader";
+// import Preloader from "../../helper/Preloader";
 
 const Home = () => {
   return (
     <>
-      <Preloader />
+      {/* <Preloader /> */}
       <Banner />
       <PromotionalOneBuroNeel />
       <FeaturedOneHome title="Stationeries" categoryid={10015} />
