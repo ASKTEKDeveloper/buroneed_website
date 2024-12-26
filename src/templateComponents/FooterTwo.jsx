@@ -25,7 +25,7 @@ const FooterTwo = () => {
                                 to="/tel:+00123456789"
                                 className="text-md text-gray-900 hover-text-main-600"
                             >
-                                +00 123 456 789
+                                +91 974 115 5473
                             </Link>
                         </div>
                         <div className="flex-align gap-16 mb-16">
@@ -33,10 +33,10 @@ const FooterTwo = () => {
                                 <i className="ph-fill ph-envelope" />
                             </span>
                             <Link
-                                to="/mailto:support24@marketpro.com"
+                                to="mailto:kishore@buroneed.com"
                                 className="text-md text-gray-900 hover-text-main-600"
                             >
-                                support24@marketpro.com
+                                kishore@buroneed.com
                             </Link>
                         </div>
                         <div className="flex-align gap-16 mb-16">
@@ -44,7 +44,7 @@ const FooterTwo = () => {
                                 <i className="ph-fill ph-map-pin" />
                             </span>
                             <span className="text-md text-gray-900 ">
-                                789 Inner Lane, California, USA
+                                No.11/14, Subbiah Reddy Block, Ulsoor, Bangalore - 560008 (Near Lakshmi Market)
                             </span>
                         </div>
                     </div>

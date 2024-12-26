@@ -89,12 +89,12 @@ const Header = () => {
         style={{ backgroundColor: "#efccaf" }}
       >
         <li>
-          <a href="#">
-            <FaPhoneAlt /> +91 98986787877
+          <a href="tel:+919741155473">
+            <FaPhoneAlt /> +91 97411 55473
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="mailto:kishore@buroneed.com">
             <MdEmail /> kishore@buroneed.com
           </a>
         </li>
@@ -270,7 +270,7 @@ const Header = () => {
             <div className="header-right flex-align d-lg-block d-none">
               <div className="header-two-activities flex-align flex-wrap gap-32">
                 <Link
-                  to="http://targetdemo.asktek.net/toms.tompg.indent.webapp/"
+                  to="http://targetdemo.asktek.net/tompg.buroneed.webapp/"
                   className="flex-align flex-column gap-8 item-hover-two"
                   target="_blank"
                 >

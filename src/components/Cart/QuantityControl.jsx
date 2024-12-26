@@ -60,7 +60,7 @@ const QuantityControl = ({ initialQuantity = 1, product }) => {
         {!Object.keys(cartItems).includes(product?.Product_Details_Id)
           ? "Add To "
           : "Update "}
-        Cart
+        Quote
         <i className="ph ph-shopping-cart" />
       </button>
     </>

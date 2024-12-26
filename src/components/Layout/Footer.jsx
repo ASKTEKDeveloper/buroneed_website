@@ -26,27 +26,27 @@ const Footer = () => {
           <div className="footer-item">
             <div className="flex-align gap-16 mb-16">
               <FaPhoneAlt />
-
-              <Link
-                to="/tel:+00123456789"
+              <a
+                href="tel:9741155473"
                 className="text-md text-gray-900 hover-text-main-600"
               >
-                +9898675765
-              </Link>
+                +91 97411 55473
+              </a>
             </div>
             <div className="flex-align gap-16 mb-16">
               <MdEmail />
-              <Link
-                to="/mailto:support24@marketpro.com"
+              <a
+                href="mailto:kishore@buroneed.com"
                 className="text-md text-gray-900 hover-text-main-600"
               >
                 kishore@buroneed.com
-              </Link>
+              </a>
             </div>
             <div className="flex-align gap-16 mb-16">
               <FaLocationDot />
-              <span className="text-md text-gray-900 ">
-                789 Inner Lane, California, USA
+              <span className="text-md text-gray-900">
+                No.11/14, Subbiah Reddy Block, Ulsoor, Bangalore - 560008 (Near
+                Lakshmi Market)
               </span>
             </div>
           </div>

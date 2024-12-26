@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import noimg from "../../assets/cart/noimg.png";
 import axios, { imageURL } from "../../axios";

@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import axios from "../../axios";
+import Loader from "../../Loaders/Loader";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cartContext from "../Context/cartContext";
-
+import { Button, Dialog, Stack, Typography } from "@mui/material";
+import { CheckCircle } from "@mui/icons-material";
 const CartFormSection = () => {
   const [data, setData] = useState({
     name: "",
@@ -14,8 +16,10 @@ const CartFormSection = () => {
   });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const { cartItems, setCartItems } = useContext(cartContext);
+  const [successMessage, setSuccessMessage] = useState(false);
 
+  const { cartItems, setCartItems, showLoading, hideLoading } =
+    useContext(cartContext);
   const handleDataChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -88,15 +92,17 @@ const CartFormSection = () => {
 
   const handleEnquirySubmission = async () => {
     setLoading(true);
+    showLoading();
     try {
       const products = Object.values(cartItems).map((item) => ({
         name: item.Product_Details_Description,
         quantity: item.productQuantity,
       }));
       await axios.post("/EmailOnEnquiry", { ...data, products });
-      toast.success("Enquiry submitted successfully!", {
-        position: "top-right",
-      });
+      setSuccessMessage(true);
+      // toast.success("Enquiry submitted successfully!", {
+      //   position: "top-right",
+      // });
       setData({
         name: "",
         company: "",
@@ -104,6 +110,8 @@ const CartFormSection = () => {
         phone: "",
         location: "",
       });
+      localStorage.removeItem("cartItems");
+      setCartItems([]);
       handleCartClearConfirmation();
     } catch (error) {
       toast.error("Failed to submit enquiry. Please try again.", {
@@ -111,6 +119,7 @@ const CartFormSection = () => {
       });
     } finally {
       setLoading(false);
+      hideLoading();
     }
   };
 
@@ -122,7 +131,7 @@ const CartFormSection = () => {
   };
 
   return (
-    <div className="col-xl-3 col-lg-4">
+    <div className="col-12">
       <div className="cart-sidebar border border-gray-100 rounded-8 px-24 py-40">
         <h6 className="text-xl mb-32">Submit Your Details</h6>
         <div className="row gap-18">
@@ -155,6 +164,73 @@ const CartFormSection = () => {
         >
           {loading ? "Submitting..." : "Submit Enquiry"}
         </button>
+        <Dialog
+          open={loading}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          fullWidth
+          PaperProps={{
+            sx: {
+              backgroundColor: "transparent",
+              boxShadow: "none",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+          }}
+        >
+          <Stack
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              backgroundColor: "#ffffff00",
+            }}
+          >
+            <Loader />
+          </Stack>
+        </Dialog>
+        <Dialog
+          open={successMessage}
+          onClose={() => setSuccessMessage(false)}
+          aria-labelledby="success-dialog-title"
+          aria-describedby="success-dialog-description"
+          fullWidth
+          PaperProps={{
+            sx: {
+              backgroundColor: "white",
+              borderRadius: "8px",
+              boxShadow: "0px 5px 15px rgba(0,0,0,0.1)",
+            },
+          }}
+        >
+          <Stack
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+              p: 3,
+              textAlign: "center",
+            }}
+          >
+            <CheckCircle color="success" sx={{ fontSize: "50px" }} />
+            <Typography variant="h6" sx={{ mt: 2 }}>
+              Your Quatation has been received. Our team will contact you
+              shortly. Please check your email.
+            </Typography>
+            <Button
+              onClick={() => {
+                setSuccessMessage(false);
+                localStorage.removeItem("cartItems");
+                setCartItems([]);
+              }}
+              variant="contained"
+              color="primary"
+              sx={{ mt: 3 }}
+            >
+              OK
+            </Button>
+          </Stack>
+        </Dialog>
       </div>
     </div>
   );

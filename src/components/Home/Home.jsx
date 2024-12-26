@@ -6,10 +6,7 @@ import FeaturedOneHome from "../../templateComponents/FeaturedOneHome";
 import PromotionalBanner1 from "./PromotionalBanner1";
 import Promotional2 from "./Promotional2";
 import Collabs from "./Collabs";
-import BrandTwo from "../../templateComponents/BrandTwo";
-import BrandThree from "../../templateComponents/BrandThree";
 import Brands from "./Brands";
-import BrandsSlideShow from "./BrandsSlideShow";
 import Preloader from "../../helper/Preloader";
 
 const Home = () => {

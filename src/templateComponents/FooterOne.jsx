@@ -38,7 +38,7 @@ const FooterOne = () => {
                                     to="/tel:+00123456789"
                                     className="text-md text-gray-900 hover-text-main-600"
                                 >
-                                    +00 123 456 789
+                                    +91 974 115 5473
                                 </Link>
                                 <span className="text-md text-main-600 ">or</span>
                                 <Link
@@ -54,10 +54,10 @@ const FooterOne = () => {
                                 <i className="ph-fill ph-envelope" />
                             </span>
                             <Link
-                                to="/mailto:support24@marketpro.com"
+                                to="mailto:kishore@buroneed.com"
                                 className="text-md text-gray-900 hover-text-main-600"
                             >
-                                support24@marketpro.com
+                                kishore@buroneed.com
                             </Link>
                         </div>
                     </div>

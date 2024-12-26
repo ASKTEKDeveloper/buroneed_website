@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../../axios";
+import { Button, Dialog, Stack, Typography } from "@mui/material";
+import Loader from "../../Loaders/Loader";
+import { CheckCircle } from "@mui/icons-material";
 
 const Contact = () => {
   const [data, setData] = useState({
@@ -8,15 +11,16 @@ const Contact = () => {
     company: "",
     email: "",
     phone: "",
-    message:""
+    message: "",
   });
   const [errors, setErrors] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
-
   });
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const handleDataChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -69,9 +73,45 @@ const Contact = () => {
   };
 
   const EmailOnEnquiry = async () => {
-    const res = await axios.post("/EmailOnEnquiryForm", { ...data });
-    console.log(res);
+    setLoading(true);
+    try {
+      const res = await axios.post("/EmailOnEnquiryForm", { ...data });
+      console.log(res);
+      setLoading(false);
+      setSuccessMessage(true); // Show success message
+      setTimeout(() => {
+        setSuccessMessage(false); // Hide success message after a delay
+        resetForm(); // Reset the form after success
+      }, 5000);
+    } catch (error) {
+      console.error("Error during API call", error);
+      setLoading(false);
+      setErrorMessage("general", "An error occurred. Please try again.");
+    }
   };
+
+  const resetForm = () => {
+    setData({
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+    setErrors({
+      name: "",
+      company: "",
+      email: "",
+      phone: "",
+    });
+  };
+
+  // const EmailOnEnquiry = async () => {
+  //   setLoading(true);
+  //   const res = await axios.post("/EmailOnEnquiryForm", { ...data });
+  //   console.log(res);
+  //   setLoading(false);
+  // };
 
   const setErrorMessage = (name, message) => {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: message }));
@@ -161,9 +201,9 @@ const Contact = () => {
                       onChange={handleDataChange}
                       onFocus={handleFocus}
                     />
-                     <p className="form-text text-danger position-absolute text-xs mt-0">
-              {errors.phone}
-            </p>
+                    <p className="form-text text-danger position-absolute text-xs mt-0">
+                      {errors.phone}
+                    </p>
                   </div>
                   <div className="col-sm-6 col-xs-6">
                     <label
@@ -184,8 +224,10 @@ const Contact = () => {
                       onChange={handleDataChange}
                       onFocus={handleFocus}
                     />
-                     <p className="form-text text-danger position-absolute text-xs mt-0"> {errors.company}
-            </p>
+                    <p className="form-text text-danger position-absolute text-xs mt-0">
+                      {" "}
+                      {errors.company}
+                    </p>
                   </div>
                   <div className="col-sm-12">
                     <label
@@ -226,34 +268,49 @@ const Contact = () => {
                 <span className="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0">
                   <i className="ph-fill ph-phone-call" />
                 </span>
-                <Link
-                  to="/tel:+00123456789"
+                <a
+                  href="tel:+919741155473"
                   className="text-md text-gray-900 hover-text-main-600"
                 >
-                  +00 123 456 789
-                </Link>
+                  +91 97411 55473
+                </a>
+
+                {/* <Link
+                  to="/tel:+00123456789"
+                  
+                >
+                  +91 974 115 5473
+                </Link> */}
               </div>
               <div className="flex-align gap-16 mb-16">
                 <span className="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0">
                   <i className="ph-fill ph-envelope" />
                 </span>
-                <Link
-                  to="/mailto:support24@marketpro.com"
+
+                <a
+                  href="mailto:kishore@buroneed.com"
                   className="text-md text-gray-900 hover-text-main-600"
                 >
-                  support24@marketpro.com
-                </Link>
+                  kishore@buroneed.com
+                </a>
+                {/* <Link
+                  to="mailto:kishore@buroneed.com"
+                  
+                >
+                  kishore@buroneed.com
+                </Link> */}
               </div>
               <div className="flex-align gap-16 mb-0">
                 <span className="w-40 h-40 flex-center rounded-circle border border-gray-100 text-main-two-600 text-2xl flex-shrink-0">
                   <i className="ph-fill ph-map-pin" />
                 </span>
                 <span className="text-md text-gray-900 ">
-                  789 Inner Lane, California, USA
+                  No.11/14, Subbiah Reddy Block, Ulsoor, Bangalore - 560008
+                  (Near Lakshmi Market)
                 </span>
               </div>
             </div>
-            <div className="mt-24 flex-align flex-wrap gap-16">
+            {/* <div className="mt-24 flex-align flex-wrap gap-16">
               <Link
                 to="#"
                 className="bg-neutral-600 hover-bg-main-600 rounded-8 p-10 px-16 flex-between flex-wrap gap-8 flex-grow-1"
@@ -274,10 +331,77 @@ const Contact = () => {
                   <i className="ph ph-map-pin" />
                 </span>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
+      <Dialog
+        open={loading}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth
+        PaperProps={{
+          sx: {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        }}
+      >
+        <Stack
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            backgroundColor: "#ffffff00",
+          }}
+        >
+          <Loader />
+        </Stack>
+      </Dialog>
+      {/* Success Message Dialog */}
+      <Dialog
+        open={successMessage}
+        onClose={() => setSuccessMessage(false)}
+        aria-labelledby="success-dialog-title"
+        aria-describedby="success-dialog-description"
+        fullWidth
+        PaperProps={{
+          sx: {
+            backgroundColor: "white",
+            borderRadius: "8px",
+            boxShadow: "0px 5px 15px rgba(0,0,0,0.1)",
+          },
+        }}
+      >
+        <Stack
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            p: 3,
+            textAlign: "center",
+          }}
+        >
+          <CheckCircle color="success" sx={{ fontSize: "50px" }} />
+          <Typography variant="h6" sx={{ mt: 2 }}>
+            Your enquiry has been submitted. Our team will contact you shortly.
+            Please check your email.
+          </Typography>
+          <Button
+            onClick={() => {
+              setSuccessMessage(false);
+              resetForm();
+            }}
+            variant="contained"
+            color="primary"
+            sx={{ mt: 3 }}
+          >
+            OK
+          </Button>
+        </Stack>
+      </Dialog>
     </section>
   );
 };
